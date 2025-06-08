@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<Window size="675,600" caption="0,0,0,35">
+	<VBox bkcolor="bk_wnd_darkcolor">
+		<HBox width="stretch" height="35" bkcolor="bk_wnd_lightcolor">
+			<Control />
+			<Button class="btn_wnd_min" name="minbtn" margin="4,6,0,0" />
+			<Box width="21" margin="4,6,0,0">
+				<Button class="btn_wnd_max" name="maxbtn" />
+				<Button class="btn_wnd_restore" name="restorebtn" visible="false" />
+			</Box>
+			<Button class="btn_wnd_close" name="closebtn" margin="4,6,8,0" />
+		</HBox>
+		<Box>
+			<VBox margin="0,0,0,0" width="stretch" height="auto">
+				<Label name="tooltip" text="测试" />
+			</VBox>
+			
+		</Box>
+	</VBox>
+	<HBox bordersize="1" bordercolor="gray">
+		<RichEdit name="tag" width="20" bordercolor="white" width="220" height="20" margin="10,10,0,0" multiline="false" />
+	</HBox>
+</Window>
