@@ -1,0 +1,11 @@
+.idea/
+# 编译中间文件
+*.idb
+*.ilk
+*.pdb
+.vs/
+
+obj/
+__pycache__
+*.pyc
+.pytest_cache/
