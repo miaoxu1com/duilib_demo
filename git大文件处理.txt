@@ -1,4 +1,60 @@
 从 Git 中删除已经提交的大文件
 如果你之前已经将这些文件加入 Git 提交历史（即使后来 .gitignore 忽略了它们），Git 仍然会尝试推送这些文件的历史记录，从而导致失败。
 
-你需要从 Git 历史中彻底删除这些文件。
+未提交过
+从 .gitignore 中排除已跟踪的文件
+# 首先将文件添加到.gitignore
+echo "tempfile.txt" >> .gitignore
+
+# 然后停止跟踪该文件
+git rm --cached tempfile.txt
+
+执行上述命令后，需要提交变更才能使停止跟踪生效：
+git commit -m "Stop tracking specified files"
+
+从最新提交中移除 .vs 目录
+
+bash
+git rm --cached -r .vs/
+将 .vs 添加到 .gitignore 文件（防止未来再次提交）
+
+bash
+echo ".vs/" >> .gitignore
+git add .gitignore
+提交这些更改
+
+bash
+git commit --amend --no-edit
+--amend 会将这些更改合并到最新提交中，--no-edit 保持原提交信息不变
+
+ 强制推送
+git push --force
+
+提交过
+git log
+这会显示当前分支的提交历史，按时间倒序排列（最新的在最上面）
+显示完整分支图（推荐组合）
+git log --graph --oneline --decorate --all
+
+这些操作只影响本地仓库，不会影响远程仓库
+git reset --hard
+git reset 清空 暂存区
+git fd --clean  清空未追踪的本地的更改文件
+
+影响远程
+git log --oneline
+找到要撤销的提交哈希
+执行 revert：
+git revert a1b2c3d
+
+假设你错误地 git add . 了所有文件：
+
+bash
+# 现代推荐做法 (Git 2.23+)
+git restore --staged .
+
+# 传统做法
+git reset
+两者都会取消所有暂存，但保持工作目录修改不变
+
+git reset --soft HEAD~1  # 撤销最后一次提交，但保留更改在暂存区
